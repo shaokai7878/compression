@@ -93,12 +93,12 @@ This function is called as `filter(req, res)` and is expected to return
 `true` to consider the response for compression, or `false` to not compress
 the response.
 
-```这个功能被称为过滤器（REQ，RES）和预计回报真正考虑压缩响应，或假不压缩的响应。```
+```这个功能被称为filter（REQ，RES），用来回报真正考虑压缩响应，或假不压缩的响应。```
 
 The default filter function uses the [compressible](https://www.npmjs.com/package/compressible)
 module to determine if `res.getHeader('Content-Type')` is compressible.
 
-```默认的过滤功能，采用可压缩模块定义如果res.getheader（'content-type”）是可压缩的。```
+```默认的过滤功能，采用可压缩模块定义判断res.getheader（'content-type”）是否为可压缩的。```
 
 ##### level
 
@@ -173,6 +173,7 @@ is not set appropriately.
 
 ```
 这个用来调整压缩算法。这个值只会影响压缩比。不会影响输出的正确性。
+
 从上面可以看出，zlib来自于zlib=require('zlib');
 ```
 
@@ -204,13 +205,20 @@ accepted by the [bytes](https://www.npmjs.com/package/bytes) module, or `false`.
 字节阈值响应体的大小压缩前是响应，默认值为1KB。这是字节数，字节模块接受的任何字符串，或false。
 ```
 
-**Note** this is only an advisory setting; if the response size cannot be determined
-at the time the response headers are written, then it is assumed the response is
-_over_ the threshold. To guarantee the response size can be determined, be sure
-set a `Content-Length` response header.
+**Note** this is only an advisory setting; 
 
+```注意，这只是一个咨询设置；```
+
+if the response size cannot be determined
+at the time the response headers are written, then it is assumed the response is
+_over_ the threshold. 
+
+```如果在响应标头写入时不能确定响应大小，则假定响应超过阈值。```
+
+To guarantee the response size can be determined, be sure
+set a `Content-Length` response header.
 ```
-注意，这只是一个咨询设置；如果在响应标头写入时不能确定响应大小，则假定响应超过阈值。为了确保响应大小可以确定，请务必设置一个内容长度响应头。
+为了确保响应大小可以确定，请务必设置一个内容长度响应头。
 ```
 
 ##### windowBits
