@@ -7,6 +7,7 @@
 [![Gratipay][gratipay-image]][gratipay-url]
 
 Node.js compression middleware.
+  node.js压缩程序
 
 The following compression codings are supported:
 
