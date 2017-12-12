@@ -211,12 +211,14 @@ function compression (options) {
 
       // compression压缩
       stream.on('data', function onStreamData (chunk) {
+         //如果write间接调用失败，停止流
         if (_write.call(res, chunk) === false) {
           stream.pause()
         }
       })
 
       stream.on('end', function onStreamEnd () {
+         
         _end.call(res)
       })
 
