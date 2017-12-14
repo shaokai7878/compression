@@ -218,11 +218,12 @@ function compression (options) {
       })
 
       stream.on('end', function onStreamEnd () {
-         
+         //响应
         _end.call(res)
       })
 
       _on.call(res, 'drain', function onResponseDrain () {
+         //激活流
         stream.resume()
       })
     })
@@ -238,6 +239,7 @@ function compression (options) {
 
 function addListeners (stream, on, listeners) {
   for (var i = 0; i < listeners.length; i++) {
+     //遍历每个监听者，并加上流方法
     on.apply(stream, listeners[i])
   }
 }
@@ -248,12 +250,14 @@ function addListeners (stream, on, listeners) {
 
 function chunkLength (chunk, encoding) {
   if (!chunk) {
+     //chunk不存在
     return 0
   }
 
   return !Buffer.isBuffer(chunk)
     ? Buffer.byteLength(chunk, encoding)
     : chunk.length
+   //如果等于chunk的buffer则返回chunk的长度，否则返回byteLength
 }
 
 /**
@@ -263,9 +267,10 @@ function chunkLength (chunk, encoding) {
 
 function shouldCompress (req, res) {
   var type = res.getHeader('Content-Type')
-
+   //获取响应头部的信息
   if (type === undefined || !compressible(type)) {
     debug('%s not compressible', type)
+     //如果未定义或者不是这种类型，给出提示信息
     return false
   }
 
@@ -279,7 +284,7 @@ function shouldCompress (req, res) {
 
 function shouldTransform (req, res) {
   var cacheControl = res.getHeader('Cache-Control')
-
+   //获取响应头部信息存入cacheControl;
   // Don't compress for Cache-Control: no-transform
   // https://tools.ietf.org/html/rfc7234#section-5.2.2.4
   return !cacheControl ||
