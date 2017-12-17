@@ -174,23 +174,34 @@ is not set appropriately.
 ```
 这个用来调整压缩算法。这个值只会影响压缩比。不会影响输出的正确性。
 
-从上面可以看出，zlib来自于zlib=require('zlib');
 ```
 
   - `zlib.Z_DEFAULT_STRATEGY` Use for normal data.
+  ```正常数据的使用```
   - `zlib.Z_FILTERED` Use for data produced by a filter (or predictor).
+  ```用于过滤器或预测器产生的数据```
     Filtered data consists mostly of small values with a somewhat random
     distribution. In this case, the compression algorithm is tuned to
     compress them better. The effect is to force more Huffman coding and less
     string matching; it is somewhat intermediate between `zlib.Z_DEFAULT_STRATEGY`
     and `zlib.Z_HUFFMAN_ONLY`.
+    ```过滤后的数据主要是小值，有点随机。
+       分布。在这种情况下，压缩算法被调整为
+       更好地压缩它们。其效果是强制赫夫曼编码更少。
+       字符串匹配；有点之间的中间` zlib。z_default_strategy `
+       和` zlib。z_huffman_only ````
   - `zlib.Z_FIXED` Use to prevent the use of dynamic Huffman codes, allowing
     for a simpler decoder for special applications.
+    ```` zlib。z_fixed `使用防止动态赫夫曼码的使用，使
+    用于特殊应用的更简单的解码器。```
   - `zlib.Z_HUFFMAN_ONLY` Use to force Huffman encoding only (no string match).
+  ```` zlib。z_huffman_only `使用强迫赫夫曼编码（不匹配字符串）。```
   - `zlib.Z_RLE` Use to limit match distances to one (run-length encoding).
     This is designed to be almost as fast as `zlib.Z_HUFFMAN_ONLY`, but give
     better compression for PNG image data.
-
+  ```` zlib。z_rle `使用限制比赛距离一（运行长度编码）。
+    这是几乎一样` zlib一样快。z_huffman_only `，但给
+    更好地压缩PNG图像数据。```
 **Note** in the list above, `zlib` is from `zlib = require('zlib')`.
 
 ##### threshold
@@ -200,7 +211,6 @@ is not set appropriately.
 The byte threshold for the response body size before compression is considered
 for the response, defaults to `1kb`. This is a number of bytes, any string
 accepted by the [bytes](https://www.npmjs.com/package/bytes) module, or `false`.
-
 ```
 字节阈值响应体的大小压缩前是响应，默认值为1KB。这是字节数，字节模块接受的任何字符串，或false。
 ```
